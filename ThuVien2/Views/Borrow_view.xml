@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!--Tree view for model-->
+    <record id = "borrow_tree" model = "ir.ui.view">
+        <field name = "name">library.borrow.tree</field>
+        <field name = "model">library.borrow</field>
+        <field name = "arch" type = "xml">
+           <tree string="borrow">
+               <field name="name"/>
+               <field name="member_id"/>
+               <field name="member_phone"/>
+               <field name="librarian_id"/>
+               <field name="borrow_state"/>
+               <field name="borrow_date"/>
+               <field name="return_date"/>
+           </tree>
+       </field>
+   </record>
+
+    <!--form view for model-->
+    <record id = "borrow_form" model = "ir.ui.view">
+        <field name = "name">library.borrow.form</field>
+        <field name = "model">library.borrow</field>
+        <field name = "arch" type = "xml">
+           <form string="borrow">
+               <header>
+                   <button name="borrow_confirm" type="object" string="Confirm" class="oe_highlight"/>
+                   <button name="borrow_done" type="object" string="Return" class="oe_highlight"/>
+                   <field name="borrow_state" widget="statusbar"/>
+               </header>
+               <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                   <group>
+                       <group>
+                           <field name="member_id"/>
+                           <field name="member_age"/>
+                           <field name="member_address"/>
+                           <field name="member_phone"/>
+                           <field name="student_id"/>
+                       </group>
+                       <group>
+                           <field name="librarian_id"/>
+                           <field name="librarian_phone"/>
+                           <field name="librarian_email"/>
+                           <field name="borrow_date"/>
+                           <field name="return_date"/>
+                       </group>
+                   </group>
+                   <notebook>
+                       <page string="Borrow line">
+                           <field name="borrow_line">
+                                <tree editable="bottom">
+                                    <field name="book_id"/>
+                                    <field name="book_isbn"/>
+                                    <field name="borrow_id" invisible="1"/>
+                                    <field name="book_author"/>
+                                    <field name="book_publisher"/>
+                                    <field name="return_date"/>
+                                    <button name="borrow_return" type="object" string="Return" class="oe_highlight"/>
+                                    <field name="borrow_state" widget="statusbar"/>
+                                </tree>
+                               <form>
+                                   <group>
+                                       <field name="book_id"/>
+                                   </group>
+                                   <group>
+                                       <field name="book_author"/>
+                                   </group>
+                               </form>
+                           </field>
+                       </page>
+                       <page string="Librarian notes">
+                           <group>
+                               <field name="librarian_notes"/>
+                           </group>
+                       </page>
+                   </notebook>
+               </sheet>
+               <div class="oe_chatter">
+                   <field name="message_follower_ids"/>
+                   <field name="activity_ids"/>
+                   <field name="message_ids" options="{'post_refresh': 'recipients'}"/>
+               </div>
+           </form>
+       </field>
+   </record>
+
+    <!--Action-->
+
+    <record id="action_borrow" model="ir.actions.act_window">
+            <field name="name">Borrow</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">library.borrow</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+               Import your first borrow
+              </p>
+            </field>
+    </record>
+
+</odoo>

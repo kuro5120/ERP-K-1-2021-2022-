@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!--Tree view for gender-->
+    <record id = "gender_tree" model = "ir.ui.view">
+        <field name = "name">library.gender.tree</field>
+        <field name = "model">library.gender</field>
+        <field name = "arch" type = "xml">
+           <tree string="gender" editable="bottom">
+               <field name="gender"/>
+           </tree>
+       </field>
+   </record>
+
+    <!--Tree view for state-->
+    <record id = "state_tree" model = "ir.ui.view">
+        <field name = "name">book.state.tree</field>
+        <field name = "model">book.state</field>
+        <field name = "arch" type = "xml">
+           <tree string="state" editable="bottom">
+               <field name="state"/>
+           </tree>
+       </field>
+   </record>
+
+    <!--form view for model-->
+
+    <!--Action for Gender-->
+    <record id="action_gender" model="ir.actions.act_window">
+            <field name="name">Gender</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">library.gender</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+               Import your first gender
+              </p>
+            </field>
+    </record>
+
+    <!--Action for State-->
+    <record id="action_state" model="ir.actions.act_window">
+            <field name="name">State</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">book.state</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+               Import your first state
+              </p>
+            </field>
+    </record>
+
+</odoo>
